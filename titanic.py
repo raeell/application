@@ -1,15 +1,13 @@
 """
 Prediction de la survie d'un individu sur le Titanic
 """
-
 import os
-from dotenv import load_dotenv
-import argparse
-
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+import argparse
 
+from dotenv import load_dotenv
 from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
@@ -18,29 +16,25 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.metrics import confusion_matrix
 
-MAX_DEPTH = None
-MAX_FEATURES = "sqrt"
-
-
-# ENVIRONMENT CONFIGURATION ---------------------------
-
-parser = argparse.ArgumentParser(description="Paramètres du random forest")
-parser.add_argument(
-    "--n_trees", type=int, default=20, help="Nombre d'arbres"
-)
-args = parser.parse_args()
-
-n_trees = args.n_trees
-
-# API TOKEN
 load_dotenv()
-JETON_API = os.environ.get("JETON_API", "")
 
-if JETON_API.startswith("$"):
+jeton_api = os.environ.get("JETON_API", "")
+
+if jeton_api.startswith("$"):
     print("API token has been configured properly")
 else:
     print("API token has not been configured")
 
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--n_trees", type=int, default=20, help="Number of trees for random forest"
+)
+args = parser.parse_args()
+print("number of trees: ", args.n_trees)
+
+N_TREES = args.n_trees
+MAX_DEPTH = None
+MAX_FEATURES = "sqrt"
 
 # IMPORT ET EXPLORATION DONNEES --------------------------------
 
@@ -119,11 +113,7 @@ preprocessor = ColumnTransformer(
 pipe = Pipeline(
     [
         ("preprocessor", preprocessor),
-        ("classifier", RandomForestClassifier(
-            n_estimators=n_trees,
-            max_depth=MAX_DEPTH,
-            max_features=MAX_FEATURES
-        )),
+        ("classifier", RandomForestClassifier(n_estimators=N_TREES)),
     ]
 )
 
