@@ -5,6 +5,7 @@ Prediction de la survie d'un individu sur le Titanic
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+import argparse
 
 from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
 from sklearn.model_selection import train_test_split
@@ -14,11 +15,17 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.metrics import confusion_matrix
 
-N_TREES = 20
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "--n_trees", type=int, default=20, help="Number of trees for random forest"
+)
+args = parser.parse_args()
+print("number of trees: ", args.n_trees)
+
+N_TREES = args.n_trees
 MAX_DEPTH = None
 MAX_FEATURES = "sqrt"
 JETON_API = "$trotskitueleski1917"
-
 
 # IMPORT ET EXPLORATION DONNEES --------------------------------
 
