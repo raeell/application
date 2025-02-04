@@ -35,7 +35,6 @@ print("number of trees: ", args.n_trees)
 N_TREES = args.n_trees
 MAX_DEPTH = None
 MAX_FEATURES = "sqrt"
-JETON_API = "$trotskitueleski1917"
 
 # IMPORT ET EXPLORATION DONNEES --------------------------------
 
