@@ -1,12 +1,13 @@
 """
 Prediction de la survie d'un individu sur le Titanic
 """
-
+import os
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 import argparse
 
+from dotenv import load_dotenv
 from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
@@ -14,6 +15,15 @@ from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.metrics import confusion_matrix
+
+load_dotenv()
+
+jeton_api = os.environ.get("JETON_API", "")
+
+if jeton_api.startswith("$"):
+    print("API token has been configured properly")
+else:
+    print("API token has not been configured")
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
