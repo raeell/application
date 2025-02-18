@@ -1,3 +1,10 @@
-# Using the API
+# Probabilité de survie sur le Titanic
 
-To use the API, create a `.env` file containing your API token under the variable name `JETON_API`.
+Pour pouvoir utiliser ce projet, il
+est recommandé de créer un fichier `config.yaml`
+ayant la structure suivante:
+
+```yaml
+jeton_api: ####
+data_path: ####
+```
