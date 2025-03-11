@@ -81,3 +81,7 @@ logger.success(f"{score:.1%} de bonnes réponses sur les données de test pour v
 logger.debug(20 * "-")
 logger.info("Matrice de confusion")
 logger.debug(matrix)
+
+from joblib import dump
+with open("model.joblib", "wb") as f:
+    dump(pipe, f, protocol=5)
