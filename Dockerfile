@@ -12,4 +12,5 @@ COPY src ./src
 COPY train.py .
 COPY app ./app
 
+CMD ["python3", "train.py"]
 CMD ["bash", "-c", "./app/run.sh"]
